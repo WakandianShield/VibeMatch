@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Santiago Gallardo | VibeMatch</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;600;700;800&family=Google+Sans:wght@300;400;500&display=swap"
+    rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ['Google Sans', 'sans-serif'],
+            body: ['Google Sans', 'sans-serif'],
+          },
+          borderRadius: {
+            sm: '10px',
+            md: '16px',
+            lg: '24px',
+            xl: '32px',
+          },
+          keyframes: {
+            spin: { to: { transform: 'rotate(360deg)' } },
+            cardIn: {
+              from: { opacity: '0', transform: 'translateY(16px)' },
+              to: { opacity: '1', transform: 'translateY(0)' },
+            },
+            fadeIn: {
+              from: { opacity: '0' },
+              to: { opacity: '1' },
+            },
+            slideUp: {
+              from: { opacity: '0', transform: 'translateY(20px)' },
+              to: { opacity: '1', transform: 'translateY(0)' },
+            },
+          },
+          animation: {
+            spin: 'spin 0.8s linear infinite',
+            cardIn: 'cardIn 0.4s ease both',
+            fadeIn: 'fadeIn 0.2s ease',
+            slideUp: 'slideUp 0.3s ease',
+          },
+        },
+      },
+    };
+  </script>
+  <link rel="icon" type="image/x-icon" href="assets/icon.webp" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+  <section class="mood-section pt-10 pb-16 text-center">
+    <div class="w-[min(1200px,92vw)] mx-auto relative z-10">
+      <h1 class="font-display font-extrabold text-[clamp(2rem,4vw,3rem)] mb-3">
+        Elige tu <span class="accent">vibe</span>
+      </h1>
+      <p class="text-[rgba(240,240,245,0.55)] text-base max-w-[480px] mx-auto mb-12">
+        Tu estado de ánimo define qué deberías ver, escuchar o leer hoy.
+      </p>
+
+      <div class="mood-grid grid grid-cols-6 gap-4 max-w-[1190px] mx-auto" id="moodGrid">
+        <button class="mood-btn" data-mood="happy" aria-label="Feliz">
+          <img src="assets/happy.webp" alt="Feliz" class="w-[60px] h-[60px] object-contain block mx-auto" />
+          <span class="font-display font-bold text-[0.9rem]">Feliz</span>
+          <span class="text-[0.7rem] text-[rgba(240,240,245,0.35)] text-center leading-tight">ya hoo</span>
+        </button>
+        <button class="mood-btn" data-mood="sad" aria-label="Triste">
+          <img src="assets/sad.webp" alt="Triste" class="w-[60px] h-[60px] object-contain block mx-auto" />
+          <span class="font-display font-bold text-[0.9rem]">Triste</span>
+          <span class="text-[0.7rem] text-[rgba(240,240,245,0.35)] text-center leading-tight">unu</span>
+        </button>
+        <button class="mood-btn" data-mood="angry" aria-label="Intenso">
+          <img src="assets/intense.webp" alt="Intenso" class="w-[60px] h-[60px] object-contain block mx-auto" />
+          <span class="font-display font-bold text-[0.9rem]">Intenso</span>
+          <span class="text-[0.7rem] text-[rgba(240,240,245,0.35)] text-center leading-tight">jeje</span>
+        </button>
+        <button class="mood-btn" data-mood="scared" aria-label="Inquieto">
+          <img src="assets/scared.webp" alt="Inquieto" class="w-[60px] h-[60px] object-contain block mx-auto" />
+          <span class="font-display font-bold text-[0.9rem]">Inquieto</span>
+          <span class="text-[0.7rem] text-[rgba(240,240,245,0.35)] text-center leading-tight">que</span>
+        </button>
+        <button class="mood-btn" data-mood="chill" aria-label="Relajado">
+          <img src="assets/chill.webp" alt="Relajado" class="w-[60px] h-[60px] object-contain block mx-auto" />
+          <span class="font-display font-bold text-[0.9rem]">Chill</span>
+          <span class="text-[0.7rem] text-[rgba(240,240,245,0.35)] text-center leading-tight">lol</span>
+        </button>
+        <button class="mood-btn" data-mood="romantic" aria-label="Romántico">
+          <img src="assets/love.webp" alt="Romántico" class="w-[60px] h-[60px] object-contain block mx-auto" />
+          <span class="font-display font-bold text-[0.9rem]">Romántico</span>
+          <span class="text-[0.7rem] text-[rgba(240,240,245,0.35)] text-center leading-tight">uwu</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-8" id="filtersSection">
+    <div class="w-[min(1200px,92vw)] mx-auto relative z-10">
+      <div class="filters-card">
+        <form class="filters-form grid grid-cols-2 gap-4" id="filtersForm" onsubmit="return false;">
+
+          <div class="form-group">
+            <label for="searchQuery"
+              class="text-[0.78rem] font-medium text-[rgba(240,240,245,0.55)] uppercase tracking-[0.05em]">
+              Palabra clave (opcional)
+            </label>
+            <div class="input-wrap">
+              <span class="input-icon">⌕</span>
+              <input type="text" id="searchQuery" name="searchQuery" placeholder="Ej: aventura espacial, romance..."
+                class="form-input" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="categorySelect"
+              class="text-[0.78rem] font-medium text-[rgba(240,240,245,0.55)] uppercase tracking-[0.05em]">
+              ¿Qué tipo de contenido?
+            </label>
+            <select id="categorySelect" name="category" class="form-input">
+              <option value="movies">Películas</option>
+              <option value="series">Series</option>
+              <option value="music">Música</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="text-[0.78rem] font-medium text-[rgba(240,240,245,0.55)] uppercase tracking-[0.05em]">
+              Ordenar por
+            </label>
+            <div class="radio-group flex flex-wrap gap-[0.6rem]">
+              <label class="radio-label">
+                <input type="radio" name="sortBy" value="popularity" checked /> Popularidad
+              </label>
+              <label class="radio-label">
+                <input type="radio" name="sortBy" value="rating" /> Rating
+              </label>
+              <label class="radio-label">
+                <input type="radio" name="sortBy" value="newest" /> Más reciente
+              </label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="text-[0.78rem] font-medium text-[rgba(240,240,245,0.55)] uppercase tracking-[0.05em]">
+              Incluir en resultados
+            </label>
+            <div class="checkbox-group flex flex-wrap gap-[0.6rem]">
+              <label class="check-label">
+                <input type="checkbox" name="includeAdult" id="includeAdult" /> Contenido +18
+              </label>
+              <label class="check-label">
+                <input type="checkbox" name="includeClassic" id="includeClassic" checked /> Clásicos
+              </label>
+              <label class="check-label">
+                <input type="checkbox" name="includeIndie" id="includeIndie" checked /> Indie / Underground
+              </label>
+            </div>
+          </div>
+
+          <div class="form-group" style="grid-column: 1 / -1;">
+            <label for="resultsRange"
+              class="text-[0.78rem] font-medium text-[rgba(240,240,245,0.55)] uppercase tracking-[0.05em]">
+              ¿Cuántos resultados? <span id="rangeVal" class="range-val font-bold font-display">10</span>
+            </label>
+            <input type="range" id="resultsRange" name="results" min="1" max="50" value="10" step="1"
+              class="form-range" />
+          </div>
+
+          <button type="submit" class="btn-discover" id="discoverBtn" disabled>
+            <span class="btn-text">Selecciona un vibe primero</span>
+          </button>
+
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-8 pb-20 min-h-[30vh]" id="resultsSection">
+    <div class="w-[min(1200px,92vw)] mx-auto relative z-10">
+
+      <div class="results-header mb-8" id="resultsHeader" style="display:none;">
+        <h2 class="font-display font-extrabold text-[clamp(1.6rem,3vw,2.2rem)] tracking-tight" id="resultsTitle">
+          Recomendaciones para ti
+        </h2>
+        <p class="text-[rgba(240,240,245,0.55)] mt-1 text-[0.9rem]" id="resultsSubtitle"></p>
+      </div>
+
+      <div class="loading-state flex flex-col items-center gap-6 py-20" id="loadingState" style="display:none;">
+        <div class="loader-ring"></div>
+        <p class="text-[rgba(240,240,245,0.55)] text-[0.9rem]">Buscando lo mejor para tu mood...</p>
+      </div>
+
+      <div class="error-state text-center py-12 text-[hsl(5,80%,65%)]" id="errorState" style="display:none;">
+        <span class="text-[2.5rem]">⚠</span>
+        <p class="mt-2" id="errorText">Algo salió mal. Intenta de nuevo.</p>
+      </div>
+
+      <div class="cards-grid grid gap-5" style="grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));"
+        id="cardsGrid"></div>
+
+      <div class="text-center py-8" id="loadMoreWrap" style="display:none;">
+        <button class="btn-load-more" id="loadMoreBtn">Cargar más →</button>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="modal-overlay" id="modalOverlay" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-card" id="modalCard">
+      <button
+        class="modal-close absolute top-4 right-4 flex items-center justify-center w-8 h-8 rounded-full text-[rgba(240,240,245,0.55)] text-[0.85rem] cursor-pointer transition-all z-10"
+        style="background: rgba(255,255,255,0.08); border: 1px solid var(--border);" id="modalClose"
+        aria-label="Cerrar">✕</button>
+      <div class="modal-content p-8" id="modalContent"></div>
+    </div>
+  </div>
+
+  <footer class="border-t py-6 text-center text-[0.75rem] text-[rgba(240,240,245,0.35)]"
+    style="border-color: var(--border);">
+    <div class="w-[min(1200px,92vw)] mx-auto">
+      <p>CETI · TMDB · iTunes</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
